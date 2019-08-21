@@ -11,6 +11,7 @@
     <modules>
         <module>com-tensquare-common</module>
         <module>com-tensquare-base</module>
+        <module>com-tensquare-recruit</module>
     </modules>
 
     <parent>

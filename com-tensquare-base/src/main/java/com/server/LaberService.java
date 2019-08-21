@@ -4,6 +4,8 @@ import com.pojo.Laber;
 import com.repository.LaberRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +56,20 @@ public class LaberService {
             return criteriaBuilder.and(list.toArray(new Predicate[list.size()]));
         };
         return laberRepository.findAll(spec);
+    }
+
+    public Page<Laber> findSearchByPage(Map searchMap , Pageable pageable){
+        Specification<Laber> spec =(Root<Laber> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) ->{
+
+            List<Predicate> list = new ArrayList<>();
+            if(StringUtils.isNotEmpty((String)searchMap.get("labername"))){
+                list.add(criteriaBuilder.like(root.get("labername").as(String.class),"%"+searchMap.get("labername")+"%"));
+            }
+            if(StringUtils.isNotEmpty((String)searchMap.get("state"))){
+                list.add(criteriaBuilder.equal(root.get("state").as(String.class),searchMap.get("state")));
+            }
+            return criteriaBuilder.and(list.toArray(new Predicate[list.size()]));
+        };
+        return laberRepository.findAll(spec, pageable);
     }
 }

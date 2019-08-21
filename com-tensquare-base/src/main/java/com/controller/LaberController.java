@@ -1,14 +1,23 @@
 package com.controller;
 
+import com.entity.PageResult;
+import com.excepition.MyExcepition;
+import com.exception.BaseException;
 import com.outresult.OuterResponseBody;
 import com.outresult.ResponseBodyWrapFactoryBean;
 import com.pojo.Laber;
 import com.server.LaberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("laber")
@@ -44,4 +53,24 @@ public class LaberController {
         laber.setId(id);
         laberService.updateLaber(laber);
     }
+
+    @OuterResponseBody
+    @PostMapping("/search")
+    public List<Laber> findSearch(@RequestBody Map searchMap){
+        List<Laber> list = laberService.findSearch(searchMap);
+        if(list.isEmpty()){
+            throw new MyExcepition(BaseException.NOT_FIND_LABER);
+        }
+        return list;
+    }
+
+    @ResponseBody
+    @PostMapping("/search/{page}/{size}")
+    public PageResult<Laber> findSearchByPage(@RequestBody Map searchMap, @PathVariable("page") Integer page,@PathVariable("size") Integer size){
+        PageRequest request = PageRequest.of(page-1,size);
+        Page<Laber> list = laberService.findSearchByPage(searchMap,request);
+        if(list.isEmpty()){
+            throw new MyExcepition(BaseException.NOT_FIND_LABER);
+        }
+        return new PageResult<Laber>(list.getTotalElements(),list.getContent());
 }

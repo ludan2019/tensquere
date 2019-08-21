@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="com-tensquare-base" />
         <module name="com-tensquare-common" />
+        <module name="com-tensquare-recruit" />
       </profile>
     </annotationProcessing>
   </component>
