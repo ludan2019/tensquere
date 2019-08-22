@@ -4,5 +4,9 @@ import com.pojo.TbEnterprise;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface TbEnterpriseRespostory extends JpaRepository<TbEnterprise,Integer>,JpaSpecificationExecutor<TbEnterprise> {
+import java.util.List;
+
+public interface TbEnterpriseRespostory extends JpaRepository<TbEnterprise,Long>, JpaSpecificationExecutor<TbEnterprise> {
+
+    List<TbEnterprise> findByIshot(String isShot);
 }

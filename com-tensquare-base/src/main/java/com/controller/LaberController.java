@@ -10,9 +10,6 @@ import com.server.LaberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -66,11 +63,12 @@ public class LaberController {
 
     @ResponseBody
     @PostMapping("/search/{page}/{size}")
-    public PageResult<Laber> findSearchByPage(@RequestBody Map searchMap, @PathVariable("page") Integer page,@PathVariable("size") Integer size){
-        PageRequest request = PageRequest.of(page-1,size);
-        Page<Laber> list = laberService.findSearchByPage(searchMap,request);
-        if(list.isEmpty()){
+    public PageResult<Laber> findSearchByPage(@RequestBody Map searchMap, @PathVariable("page") Integer page,@PathVariable("size") Integer size) {
+        PageRequest request = PageRequest.of(page - 1, size);
+        Page<Laber> list = laberService.findSearchByPage(searchMap, request);
+        if (list.isEmpty()) {
             throw new MyExcepition(BaseException.NOT_FIND_LABER);
         }
-        return new PageResult<Laber>(list.getTotalElements(),list.getContent());
+        return new PageResult<Laber>(list.getTotalElements(), list.getContent());
+    }
 }
