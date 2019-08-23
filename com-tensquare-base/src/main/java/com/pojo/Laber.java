@@ -3,6 +3,7 @@ package com.pojo;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,6 +18,5 @@ public class Laber {
     private Long count;
     private Long fans;
     private String recommend;
-
 
 }
