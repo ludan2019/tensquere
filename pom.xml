@@ -13,6 +13,7 @@
         <module>com-tensquare-base</module>
         <module>com-tensquare-recruit</module>
         <module>com-tensquare-qa</module>
+        <module>com-tensquare-article</module>
     </modules>
 
     <parent>

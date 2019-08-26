@@ -4,33 +4,28 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
-@Table(name = "tb_problem")
-public class TbProblem {
-
+@Table(name="tb_article")
+public class TbArticle {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
+    private String columnId;
+    private String userId;
     private String title;
     private String content;
+    private String image;
     private Date createTime;
     private Date updateTime;
-    private Long userid;
-    private String nickname;
+    private String isPublic;
+    private String isTop;
     private Integer visits;
     private Integer thumbup;
-    private Integer reply;
-    private String solve;
-    private String replyName;
-    private Date replyTime;
-
-    @OneToMany(mappedBy="tbProblem",fetch = FetchType.LAZY)
-    private List<TbReply> replys;
-
+    private Integer comment;
+    private String state;
+    private String url;
+    private Integer channelId;
+    private String type;
 }
-
-

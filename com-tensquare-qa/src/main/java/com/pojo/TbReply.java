@@ -15,7 +15,7 @@ public class TbReply {
     private Long id;
     @ManyToOne
     @JoinColumn(name="problem_id",referencedColumnName = "id",nullable = false)
-    private TbProblem problemId;
+    private TbProblem tbProblem;
     private String content;
     private Date createTime;
     private Date updateTime;

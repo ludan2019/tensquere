@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="com-tensquare-article" />
         <module name="com-tensquare-base" />
         <module name="com-tensquare-common" />
         <module name="com-tensquare-qa" />
