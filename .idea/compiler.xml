@@ -11,6 +11,7 @@
         <module name="com-tensquare-common" />
         <module name="com-tensquare-qa" />
         <module name="com-tensquare-recruit" />
+        <module name="com-tensquare-spit" />
       </profile>
     </annotationProcessing>
   </component>

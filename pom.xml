@@ -14,6 +14,7 @@
         <module>com-tensquare-recruit</module>
         <module>com-tensquare-qa</module>
         <module>com-tensquare-article</module>
+        <module>com-tensquare-spit</module>
     </modules>
 
     <parent>
